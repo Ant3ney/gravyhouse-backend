@@ -4,7 +4,7 @@ app = express();
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-	res.send("Landing page is working");
+	res.render("index");
 });
 
 app.listen(process.env.PORT || 3000, process.env.IP, () => {
