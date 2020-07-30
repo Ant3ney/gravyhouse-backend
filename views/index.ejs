@@ -1,5 +1,16 @@
 <%- include("partials/header") -%>
 <h1>
-	Index/Landing page
+	Home / Landing page
 </h1>
+
+<!-- Display user authentication info -->
+<% if(currentUser){ %>
+	<h1>
+		Logged in as <%= currentUser.name %>!
+	</h1>
+<% } else{ %>
+	<h1>
+		Not logged in / Signed up
+	</h1>
+<% } %>
 <%- include("partials/footer") -%>

@@ -14,7 +14,12 @@
 	  <link rel="stylesheet" type="text/css" href="/css/main01.css">
   </head>
   <body>
-	<a href="/">Home</a>
-	<a href="/login">Login</a>
-	<a href="/signup">Sign up</a>
-	<a href="#">Sign out</a>
+	<a href="/">Home</a>	
+	  
+	<!-- Check if a user is logged authenticated -->
+	<% if(!currentUser) { %>
+		<a href="/login">Login</a>
+		<a href="/signup">Sign up</a>
+	<% } else {%>
+		<a href="/logout">Sign out</a>
+	<% } %>
