@@ -12,7 +12,7 @@ var utilities = require("../middleware/utilities");
 //Stratigy options place in gitignore later
 var stratOptionsGoogle = {
 	//options for strategy
-	callbackURL: "https://tests-qeekt.run-us-west2.goorm.io/google/redirect",
+	callbackURL: process.env.CALLBACKURL,
 	clientID: process.env.CLIENTID,
 	clientSecret: process.env.CLIENTSECRET
 }
