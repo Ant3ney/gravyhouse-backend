@@ -103,7 +103,7 @@ router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
 //Sign up with facebook
 router.get("/register/facebook", (req, res) => {
 	//handle app logic before authenticating
-	res.redirect("/auth/google");
+	res.redirect("/auth/facebook");
 });
 
 //Login with facebook
