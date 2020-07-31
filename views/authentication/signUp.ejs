@@ -7,4 +7,19 @@
 <a class="google-btn" href="/register/google">Sign up with Google</a>
 
 <!-- Local authentication methoods -->
+<form action="/signup" method="POST">
+	<label for="username">Username</label>
+	<input type="text" id="username" name="username">
+	
+	<label for="namefeild">Name</label>
+	<input type="text" id="namefeild" name="namefeild">
+	
+	<label for="passwordfeild">Password</label>
+	<input type="password" id="passwordfeild" name="password">
+	
+	<button type="submit">
+		Sign up
+	</button>
+</form>
+
 <%- include("../partials/footer") -%>

@@ -3,11 +3,40 @@ var middle = {};
 var express = require("express");
 var app = express();
 
-//loop through users and find one with matching id
+//create new local user
+middle.assembleLocalUser = (username, name, hash) => {
+	var newUser = {
+		username: username,
+		name: name,
+		id: null,
+		password: hash,
+		type: "local",
+		email: null
+	}
+	
+	return newUser;
+}
+
+//loop though users and find matching local username
+middle.findIndexOfLocalUser = (users, username) => {
+	var correctUserIndex = -1;
+	
+	//loop through and find index of user with correct username
+	for(var i = 0; i < users.length; i++){
+		if(users[i].type === "local" && users[i].username === username){
+			correctUserIndex = i;
+			break;
+		}
+	}
+	
+	return correctUserIndex;
+}
+
+//loop through users and find one with matching google id
 middle.findIndexOfGoogleUser = function(users, profile){
 	var returnVal = -1;
 	users.forEach((user, i) => {
-		if(user.id.toString() == profile.id.toString()){
+		if(user.id && user.id.toString() == profile.id.toString()){
 			returnVal = i;
 		}
 	});
