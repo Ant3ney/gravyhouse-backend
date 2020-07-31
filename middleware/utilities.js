@@ -33,7 +33,7 @@ middle.findIndexOfLocalUser = (users, username) => {
 }
 
 //loop through users and find one with matching google id
-middle.findIndexOfGoogleUser = function(users, profile){
+middle.findIndexOfOAuthUser = function(users, profile){
 	var returnVal = -1;
 	users.forEach((user, i) => {
 		if(user.id && user.id.toString() == profile.id.toString()){
@@ -44,13 +44,13 @@ middle.findIndexOfGoogleUser = function(users, profile){
 }
 
 //Create new user object
-middle.assembleGoogleUser = function(profile){
+middle.assembleOAuthUser = function(profile, type){
 	var user = {
 		username: profile.displayName,
 		name: profile.displayName,
 		id: profile.id,
 		password: "null",
-		type: "google"
+		type: type
 	};
 		
 	return user

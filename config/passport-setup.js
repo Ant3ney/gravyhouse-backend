@@ -6,6 +6,7 @@
 var app = require("express")();
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20");
+const FacebookStrategy = require("passport-facebook");
 var User = require("../models/users");
 var utilities = require("../middleware/utilities");
 var localStrategy = require("passport-local").Strategy;
@@ -56,6 +57,42 @@ passport.use(new localStrategy(
   	}
 ));
 
+//Facebook stratigy options
+var stratOptionsFacebook = {
+	//options for strategy
+	callbackURL: process.env.FBCALLBACKURL,
+	clientID: process.env.FBCLIENTID,
+	clientSecret: process.env.FBCLIENTSECRET
+}
+
+//Facebook stratigy config
+passport.use(new FacebookStrategy(stratOptionsFacebook, (accessToken, refreshToken, profile, done) => {
+	//passport callback function
+
+	//Find all exzisting DB users
+	User.find({}, (err, users) => {
+		if(err){
+			console.log("Something went wrong in passport config");
+			console.log(err.message);
+		}
+		else{
+			//Function retruns index of user that matches facebook profile id if any
+			var correctIndex = utilities.findIndexOfOAuthUser(users, profile);
+
+			if(correctIndex >= 0){ //user already has account
+				console.log("User logged in");
+				return done(err, users[correctIndex]);
+			}
+			else{ //if user dose not already have a facebook acount
+				User.create(utilities.assembleOAuthUser(profile, "facebook"), (err, user) => {
+					console.log("User signed up");
+					return done(err, user);
+				});
+			}
+		}
+	});
+}));
+
 //Google stratigy options
 var stratOptionsGoogle = {
 	//options for strategy
@@ -64,6 +101,7 @@ var stratOptionsGoogle = {
 	clientSecret: process.env.CLIENTSECRET
 }
 
+//Google stategy config
 passport.use(new GoogleStrategy(stratOptionsGoogle, (accesToken, refreshToken, profile, done) => {
 	//passport callback function
 
@@ -75,14 +113,14 @@ passport.use(new GoogleStrategy(stratOptionsGoogle, (accesToken, refreshToken, p
 		}
 		else{
 			//Function retruns index of user that matches google profile id if any
-			var correctIndex = utilities.findIndexOfGoogleUser(users, profile);
+			var correctIndex = utilities.findIndexOfOAuthUser(users, profile);
 
 			if(correctIndex >= 0){ //user already has account
 				console.log("User logged in");
 				return done(err, users[correctIndex]);
 			}
 			else{ //if user dose not already have a google acount
-				User.create(utilities.assembleGoogleUser(profile), (err, user) => {
+				User.create(utilities.assembleOAuthUser(profile, "google"), (err, user) => {
 					console.log("User signed up");
 					return done(err, user);
 				});

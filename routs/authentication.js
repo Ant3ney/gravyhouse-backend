@@ -98,4 +98,27 @@ router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
 
 //Authentication with google - End
 
+//Authentication with facebook - Start
+
+//Sign up with facebook
+router.get("/register/facebook", (req, res) => {
+	//handle app logic before authenticating
+	res.redirect("/auth/google");
+});
+
+//Login with facebook
+router.get("/login/facebook", (req, res) => {
+	//handle app login logic here
+	res.redirect("/auth/facebook");
+});
+
+//Authenticate with facebook
+router.get('/auth/facebook',
+  passport.authenticate('facebook'));
+router.get("/facebook/redirect", passport.authenticate("facebook"), (req, res) => {
+	res.redirect("/");
+});
+
+//Authentication with facebook - End
+
 module.exports = router;
