@@ -56,4 +56,17 @@ middle.assembleOAuthUser = function(profile, type){
 	return user
 }
 
+//Create new user object
+middle.assembleGithubUser = function(profile, type){
+	var user = {
+		username: profile.username,
+		name: profile.username,
+		id: profile.id,
+		password: "null",
+		type: type
+	};
+		
+	return user
+}
+
 module.exports = middle;

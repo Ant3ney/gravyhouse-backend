@@ -121,4 +121,29 @@ router.get("/facebook/redirect", passport.authenticate("facebook"), (req, res) =
 
 //Authentication with facebook - End
 
+//Authentication with github - Start
+
+//login with github
+router.get("/login/github", (req, res) => {
+	//handle app login logic here
+	res.redirect("/auth/github");
+});
+
+//Sign up with github
+router.get("/register/github", (req, res) => {
+	//handle app sign up logic here
+	res.redirect("/auth/github");
+});
+
+//Authenticate with github
+router.get('/auth/github', passport.authenticate('github'));
+router.get('/github/redirect', 
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
+//Authentication with github - End
+
 module.exports = router;

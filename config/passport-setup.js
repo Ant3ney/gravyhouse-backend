@@ -7,6 +7,7 @@ var app = require("express")();
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20");
 const FacebookStrategy = require("passport-facebook");
+const GithubStrategy = require("passport-github2");
 var User = require("../models/users");
 var utilities = require("../middleware/utilities");
 var localStrategy = require("passport-local").Strategy;
@@ -56,6 +57,45 @@ passport.use(new localStrategy(
 		});
   	}
 ));
+
+//Github strategy options
+var stratOptionsGithub = {
+	//options for strategy
+	callbackURL: process.env.GHCALLBACKURL,
+	clientID: process.env.GHCLIENTID,
+	clientSecret: process.env.GHCLIENTSECRET 
+}
+
+//Github stratigy config
+passport.use(new GithubStrategy(stratOptionsGithub,
+  function(accessToken, refreshToken, profile, done) {
+    
+  //passport callback function
+
+	//Find all exzisting DB users
+	User.find({}, (err, users) => {
+		if(err){
+			console.log("Something went wrong in passport config");
+			console.log(err.message);
+		}
+		else{
+			//Function retruns index of user that matches facebook profile id if any
+			var correctIndex = utilities.findIndexOfOAuthUser(users, profile);
+
+			if(correctIndex >= 0){ //user already has account
+				console.log("User logged in");
+				return done(err, users[correctIndex]);
+			}
+			else{ //if user dose not already have a facebook acount
+				User.create(utilities.assembleGithubUser(profile, "github"), (err, user) => {
+					console.log("User signed up");
+					console.log(user);
+					return done(err, user);
+				});
+			}
+		}
+	});
+}));
 
 //Facebook stratigy options
 var stratOptionsFacebook = {
