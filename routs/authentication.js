@@ -8,12 +8,19 @@ const saltRounds = 10;
 var User = require("../models/users");
 var utilities = require("../middleware/utilities");
 
+//Set authentication permissions
+var authenticationPermission = {
+	google: true,
+	facebook: true,
+	github: true
+}
+
 //Get authentication views
 router.get("/login", (req, res) => {
-	res.render("authentication/login");
+	res.render("authentication/login", {allow: authenticationPermission});
 });
 router.get("/signup", (req, res) => {
-	res.render("authentication/signUp");
+	res.render("authentication/signUp", {allow: authenticationPermission});
 });
 
 //Local sign up

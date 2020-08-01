@@ -4,9 +4,17 @@
 </h1>
 
 <!-- Oauth authentication methoods -->
-<a class="google-btn" href="/register/google">Sign up with Google</a>
-<a class="google-btn" href="/register/facebook">Sign up with Facebook</a>
-<a class="google-btn" href="/register/github">Sign up with Github</a>
+
+<!-- Check if specifice methood is allowed -->
+<% if(allow.google){ %>
+	<a class="google-btn" href="/register/google">Sign up with Google</a>
+<% } %>
+<% if(allow.facebook){ %>
+	<a class="google-btn" href="/register/facebook">Sign up with Facebook</a>
+<% } %>
+<% if(allow.github){ %>
+	<a class="google-btn" href="/register/github">Sign up with Github</a>
+<% } %>
 
 <!-- Local authentication methoods -->
 <form action="/signup" method="POST">
