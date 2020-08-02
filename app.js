@@ -10,7 +10,8 @@ var bodyParser = require("body-parser"),
 	mongoose = require("mongoose"),
 	passport = require("passport"),
 	User = require("./models/users"),
-	expressSession = require("express-session");
+	expressSession = require("express-session"),
+	flash = require('connect-flash');
 
 //passport setup
 app.use(expressSession({
@@ -18,6 +19,7 @@ app.use(expressSession({
 	resave: false,
 	saveUninitialized: false
 }));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 passport.serializeUser(function(user, done) {
@@ -31,6 +33,8 @@ passport.deserializeUser(function(user, done) {
 app.use((req, res, next) => {
 	//populate req.app.loacls with app info
 	req.app.locals.currentUser = req.user;
+	req.app.locals.message = req.flash('authentication');
+	req.app.locals.err = req.flash('error');
 	next();
 });
 app.use(bodyParser.urlencoded({extended: true}));

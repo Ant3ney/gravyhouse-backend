@@ -11,6 +11,7 @@ const GithubStrategy = require("passport-github2");
 var User = require("../models/users");
 var utilities = require("../middleware/utilities");
 var localStrategy = require("passport-local").Strategy;
+var appjs = require("../app");
 
 //password hashing setup
 const bcrypt = require('bcrypt');

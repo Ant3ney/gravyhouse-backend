@@ -17,10 +17,17 @@ var authenticationPermission = {
 
 //Get authentication views
 router.get("/login", (req, res) => {
+	console.log(req.flash('failureFlash'));
 	res.render("authentication/login", {allow: authenticationPermission});
 });
 router.get("/signup", (req, res) => {
 	res.render("authentication/signUp", {allow: authenticationPermission});
+});
+
+//Invalid credentials router
+router.get("/invalid", (req, res) => {
+	req.flash("error", "username or password is invalid");
+	res.redirect("/login");
 });
 
 //Local sign up
@@ -55,6 +62,7 @@ router.post("/signup", (req, res, next) => {
 					}
 					else{
 						console.log("Created new local user");
+						req.flash("authentication", "You have successfull logged in as " + user.name);
 						next();
 					}
 				});
@@ -63,21 +71,25 @@ router.post("/signup", (req, res, next) => {
 	});
 }, passport.authenticate('local', { 
 		successRedirect: '/',
-		failureRedirect: '/login'
+		failureRedirect: '/invalid',
+   		failureFlash: true
 	})
 );
 
 //local login
-router.post("/login", passport.authenticate('local', { 
-		successRedirect: '/',
-   		failureRedirect: '/login'
-		})
-);
+router.post("/login", passport.authenticate('local', {
+   		failureRedirect: '/invalid',
+   		failureFlash: true
+}), (req, res) => {
+	req.flash("authentication", "You have successfull logged in as " + req.user.name);
+	res.redirect("/");
+});
 
 //auththentication logout
 router.get("/logout", (req, res) => {
 	console.log("User logged out");
  	req.logout();
+	req.flash("authentication", "You successfully logged out")
  	res.redirect('/');
 });
 
@@ -99,7 +111,11 @@ router.get("/login/google", (req, res) => {
 router.get("/auth/google", passport.authenticate("google", {
 	scope: ["profile"]
 }));
-router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
+router.get("/google/redirect", passport.authenticate("google", {
+   failureRedirect: '/invalid',
+   failureFlash: true
+}), (req, res) => {
+	req.flash("authentication", "You have successfull logged in as " + req.user.name);
 	res.redirect("/");
 });
 
@@ -122,7 +138,11 @@ router.get("/login/facebook", (req, res) => {
 //Authenticate with facebook
 router.get('/auth/facebook',
   passport.authenticate('facebook'));
-router.get("/facebook/redirect", passport.authenticate("facebook"), (req, res) => {
+router.get("/facebook/redirect", passport.authenticate("facebook", {
+   failureRedirect: '/invalid',
+   failureFlash: true
+}), (req, res) => {
+	req.flash("authentication", "You have successfull logged in as " + req.user.name);
 	res.redirect("/");
 });
 
@@ -145,9 +165,13 @@ router.get("/register/github", (req, res) => {
 //Authenticate with github
 router.get('/auth/github', passport.authenticate('github'));
 router.get('/github/redirect', 
-  passport.authenticate('github', { failureRedirect: '/login' }),
+  passport.authenticate('github', {
+   failureRedirect: '/invalid',
+   failureFlash: true
+}),
   function(req, res) {
     // Successful authentication, redirect home.
+	req.flash("authentication", "You have successfull logged in as " + req.user.name);
     res.redirect('/');
   });
 

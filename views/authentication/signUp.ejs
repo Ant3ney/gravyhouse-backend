@@ -1,4 +1,15 @@
 <%- include("../partials/header") -%>
+<% if(message){ %>
+	<h4>
+		<%= message %>
+	</h4>
+<% } %>
+<% if(err){ %>
+	<h4>
+		<%= err %>
+	</h4>
+<% } %>
+
 <h1>
 	Sign up
 </h1>

@@ -1,4 +1,16 @@
 <%- include("partials/header") -%>
+<!-- Display flash message -->
+<% if(message){ %>
+	<h4>
+		<%= message %>
+	</h4>
+<% } %>
+<% if(err){ %>
+	<h4>
+		<%= err %>
+	</h4>
+<% } %>
+
 <h1>
 	Home / Landing page
 </h1>
