@@ -62,9 +62,9 @@ passport.use(new localStrategy(
 //Github strategy options
 var stratOptionsGithub = {
 	//options for strategy
-	callbackURL: process.env.GHCALLBACKURL,
-	clientID: process.env.GHCLIENTID,
-	clientSecret: process.env.GHCLIENTSECRET 
+	callbackURL: process.env.GHCALLBACKURL || "nullvalue",
+	clientID: process.env.GHCLIENTID|| "nullvalue",
+	clientSecret: process.env.GHCLIENTSECRET|| "nullvalue" 
 }
 
 //Github stratigy config
@@ -101,9 +101,9 @@ passport.use(new GithubStrategy(stratOptionsGithub,
 //Facebook stratigy options
 var stratOptionsFacebook = {
 	//options for strategy
-	callbackURL: process.env.FBCALLBACKURL,
-	clientID: process.env.FBCLIENTID,
-	clientSecret: process.env.FBCLIENTSECRET
+	callbackURL: process.env.FBCALLBACKURL|| "nullvalue",
+	clientID: process.env.FBCLIENTID|| "nullvalue",
+	clientSecret: process.env.FBCLIENTSECRET|| "nullvalue"
 }
 
 //Facebook stratigy config
@@ -137,9 +137,9 @@ passport.use(new FacebookStrategy(stratOptionsFacebook, (accessToken, refreshTok
 //Google stratigy options
 var stratOptionsGoogle = {
 	//options for strategy
-	callbackURL: process.env.CALLBACKURL,
-	clientID: process.env.CLIENTID,
-	clientSecret: process.env.CLIENTSECRET
+	callbackURL: process.env.CALLBACKURL|| "nullvalue",
+	clientID: process.env.CLIENTID|| "nullvalue",
+	clientSecret: process.env.CLIENTSECRET|| "nullvalue"
 }
 
 //Google stategy config
