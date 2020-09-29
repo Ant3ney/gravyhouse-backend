@@ -35,7 +35,18 @@ app.use((req, res, next) => {
 	req.app.locals.currentUser = req.user;
 	req.app.locals.message = req.flash('authentication');
 	req.app.locals.err = req.flash('error');
-	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:19006, https://www.google.com');
+
+	var orgin = "null";
+	var host = req.get('host');
+	var whiteList = [
+		"http://localhost:19006",
+		"https://www.google.com"
+	]
+	if(whiteList.includes(host)){
+		orgin = host;
+	}
+
+	res.setHeader('Access-Control-Allow-Origin', orgin);
 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	next();
