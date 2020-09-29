@@ -36,13 +36,15 @@ app.use((req, res, next) => {
 	req.app.locals.message = req.flash('authentication');
 	req.app.locals.err = req.flash('error');
 
+	//Factor out somewhere else
 	var orgin = "null";
-	var host = req.get('host');
-	var whiteList = [
+	var host = req.get('origin');
+	console.log(host);
+	var whitelist = [
 		"http://localhost:19006",
 		"https://www.google.com"
 	]
-	if(whiteList.includes(host)){
+	if(whitelist.includes(host)){
 		orgin = host;
 	}
 
