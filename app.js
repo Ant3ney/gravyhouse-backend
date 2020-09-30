@@ -39,7 +39,6 @@ app.use((req, res, next) => {
 	//Factor out somewhere else
 	var orgin = "null";
 	var host = req.get('origin');
-	console.log(host);
 	var whitelist = [
 		"http://localhost:19006",
 		"https://www.google.com"
@@ -71,10 +70,12 @@ mongoose.connect(process.env.DBURL, {
 //Handling routs
 //route file locations
 var authenticationRouts = require("./routs/authentication"),
-	indexRouts = require("./routs/index");
+	indexRouts = require("./routs/index"),
+	testRoutes = require("./routs/testing");
 //using routs files
 app.use(authenticationRouts);
 app.use(indexRouts);
+app.use("/testApi", testRoutes);
 
 //app setings
 app.set("view engine", "ejs");
