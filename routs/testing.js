@@ -1,9 +1,9 @@
 var express = require("express");
 var router = express.Router();
-var testCharacters = require("../gameLogic/templetesAndPresets/testCharacters");
+var initialData = require("../gameLogic/templetesAndPresets/initialData");
 
 router.get("/characters", (req, res) => {
-    res.json(testCharacters);
+    res.json(initialData);
 });
 
 module.exports = router;
