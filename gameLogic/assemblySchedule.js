@@ -30,6 +30,10 @@ var assemblySchedule = (characters) => {
         saturday: {
             day: [],
             night: []
+        },
+        sunday: {
+            day: [],
+            night: []
         }
     };
     characters.forEach((character) => {
