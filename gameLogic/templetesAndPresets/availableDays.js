@@ -15,7 +15,7 @@ var availableDays = {
         day: true,
         night: true
     },
-    firday: {
+    friday: {
         day: true,
         night: true
     },
