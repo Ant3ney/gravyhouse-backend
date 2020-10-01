@@ -9,5 +9,8 @@ router.get("/characters", (req, res) => {
 router.get("/schedule", (req, res) => {
     res.json(assembleSchedule(require("../gameLogic/templetesAndPresets/testCharacters")));
 });
+router.get("/resetData", (req, res) => {
+    res.json(initialData);
+})
 
 module.exports = router;
