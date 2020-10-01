@@ -7,9 +7,10 @@ var data = {
     testCharacters: testCharacter,
     shiftStructure: assemblySchedule(testCharacter),
     availableDays: availableDays,
-    
+
     //for now
-    initialChapter: 0
+    initialChapter: 0,
+    currentDay: "monday"
 }
 
 module.exports = data;
