@@ -7,9 +7,9 @@ var defaultCharacterKitchen = {
     effectivness: 2,
     sanity: 30,
     respectability: 5,
-    happiness: 1,
+    happyness: 1,
     cleanliness: 10,
-    Anger: 0
+    anger: 0
 }
 
 var defaultCharacterServer = {
@@ -21,9 +21,9 @@ var defaultCharacterServer = {
     effectivness: 2,
     sanity: 30,
     respectability: 5,
-    happiness: 1,
+    happyness: 1,
     cleanliness: 10,
-    Anger: 0
+    anger: 0
 }
 
 //This data is read only
