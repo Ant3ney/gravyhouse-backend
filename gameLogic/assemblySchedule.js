@@ -59,7 +59,7 @@ var assemblySchedule = (characters) => {
                 schedule[day].day.push(addedCharacter);
             }
             else{
-                avalibleServers = cMan.getServersWhosNot(characters, schedule[day].day);
+                avalibleServers = cMan.getServersWhosNot(characters, schedule[day].night);
                 randomIndex = util.getRandomIndexFromArray(avalibleServers);
                 addedCharacter = avalibleServers[randomIndex];
                 schedule[day].night.push(addedCharacter);
@@ -68,7 +68,7 @@ var assemblySchedule = (characters) => {
         //Add Cooks
         for(var i = 0; i < 4; i++){
             if(i < 2){
-                avalibleCooks = cMan.getCooksWhosNot(characters, schedule[day].night);
+                avalibleCooks = cMan.getCooksWhosNot(characters, schedule[day].day);
                 randomIndex = util.getRandomIndexFromArray(avalibleCooks);
                 addedCharacter = avalibleCooks[randomIndex];
                 schedule[day].day.push(addedCharacter);
