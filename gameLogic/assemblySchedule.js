@@ -68,13 +68,13 @@ var assemblySchedule = (characters) => {
         //Add Cooks
         for(var i = 0; i < 4; i++){
             if(i < 2){
-                avalibleCooks = cMan.getCooksWhosNot(characters, schedule[day].day);
+                avalibleCooks = cMan.getCooksWhosNot(characters, schedule[day].night);
                 randomIndex = util.getRandomIndexFromArray(avalibleCooks);
                 addedCharacter = avalibleCooks[randomIndex];
                 schedule[day].day.push(addedCharacter);
             }
             else{
-                avalibleCooks = cMan.getCooksWhosNot(characters, schedule[day].day);
+                avalibleCooks = cMan.getCooksWhosNot(characters, schedule[day].night);
                 randomIndex = util.getRandomIndexFromArray(avalibleCooks);
                 addedCharacter = avalibleCooks[randomIndex];
                 schedule[day].night.push(addedCharacter);
