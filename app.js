@@ -12,6 +12,7 @@ var bodyParser = require("body-parser"),
 	User = require("./models/users"),
 	expressSession = require("express-session"),
 	flash = require('connect-flash');
+	corsCheck = require("./utilities/getCORSOrgin");
 
 //passport setup
 app.use(expressSession({
@@ -37,15 +38,8 @@ app.use((req, res, next) => {
 	req.app.locals.err = req.flash('error');
 
 	//Factor out somewhere else
-	var orgin = "null";
 	var host = req.get('origin');
-	var whitelist = [
-		"http://localhost:19006",
-		"https://www.google.com"
-	]
-	if(whitelist.includes(host)){
-		orgin = host;
-	}
+	var orgin = corsCheck(host);
 
 	res.setHeader('Access-Control-Allow-Origin', orgin);
 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
