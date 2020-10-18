@@ -357,6 +357,36 @@ var characters = [
             catchPhrase: "Yeah Im doing fine how are you"
         },
         character: defaultCharacterServer
+    },
+    {
+        person: {
+            name: {
+                firstName: "Christian",
+                lastName: "Chewbacca"
+            },
+            age: 25,
+            gender: "m",
+            wealth: 4,
+            personality: "outgoing",
+            deniedPhrase: "Dude! Whats wrong with you",
+            catchPhrase: "Yeah lets get lit man"
+        },
+        character: defaultCharacterKitchen
+    },
+    {
+        person: {
+            name: {
+                firstName: "Vicky",
+                lastName: "Dang"
+            },
+            age: 19,
+            gender: "f",
+            wealth: 4,
+            personality: "challenging",
+            deniedPhrase: "Are you serious right now",
+            catchPhrase: "Huay"
+        },
+        character: defaultCharacterServer
     }
 ]
 
