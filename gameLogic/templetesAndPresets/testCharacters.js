@@ -387,6 +387,20 @@ var characters = [
             catchPhrase: "Huay"
         },
         character: defaultCharacterServer
+    },
+    {
+        person: {
+            name: {
+                firstName: "Kasey",
+                lastName: "Takahashi"
+            },
+            age: 25,
+            gender: "f",
+            personality: "challenging",
+            deniedPhrase: "My god your stupid",
+            catchPhrase: "Hey loosers"
+        },
+        character: defaultCharacterServer
     }
 ]
 
