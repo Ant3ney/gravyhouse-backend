@@ -398,7 +398,35 @@ var characters = [
             gender: "f",
             personality: "challenging",
             deniedPhrase: "My god your stupid",
-            catchPhrase: "Hey loosers"
+            catchPhrase: "Hey losers"
+        },
+        character: defaultCharacterServer
+    },
+    {
+        person: {
+            name: {
+                firstName: "Mark",
+                lastName: "Noda"
+            },
+            age: 24,
+            gender: "m",
+            personality: "organized",
+            deniedPhrase: "Hey man you got to stop that",
+            catchPhrase: "My man"
+        },
+        character: defaultCharacterKitchen
+    },
+    {
+        person: {
+            name: {
+                firstName: "Philip",
+                lastName: "P"
+            },
+            age: 23,
+            gender: "m",
+            personality: "reserved",
+            deniedPhrase: "Umm. alright",
+            catchPhrase: "Cool"
         },
         character: defaultCharacterServer
     }
