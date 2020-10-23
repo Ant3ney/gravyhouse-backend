@@ -429,6 +429,34 @@ var characters = [
             catchPhrase: "Cool"
         },
         character: defaultCharacterServer
+    },
+    {
+        person: {
+            name: {
+                firstName: "Taka",
+                lastName: "Okuno"
+            },
+            age: 24,
+            gender: "m",
+            personality: "confident",
+            deniedPhrase: "Why did you do that man",
+            catchPhrase: "Howdy mang"
+        },
+        character: defaultCharacterKitchen
+    },
+    {
+        person: {
+            name: {
+                firstName: "CarloseTest",
+                lastName: "Unfinished"
+            },
+            age: 24,
+            gender: "m",
+            personality: "curious",
+            deniedPhrase: "Hey! Your going to fix that right",
+            catchPhrase: "Ok ok I see where your going"
+        },
+        character: defaultCharacterKitchen
     }
 ]
 
