@@ -457,6 +457,20 @@ var characters = [
             catchPhrase: "Ok ok I see where your going"
         },
         character: defaultCharacterKitchen
+    },
+    {
+        person: {
+            name: {
+                firstName: "David",
+                lastName: "H"
+            },
+            age: 23,
+            gender: "m",
+            personality: "outgoing",
+            deniedPhrase: "What why! Just why!",
+            catchPhrase: "Wow, thats pretty cool."
+        },
+        character: defaultCharacterServer
     }
 ]
 
